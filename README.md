@@ -16,7 +16,7 @@ This repository contains an implementation of Role-Based Access Control (RBAC) i
 
 ```bash
 git clone https://github.com/michealken30/RBAC.git
-cd backend 
+cd backend
 ```
 
 ### 2. Install Dependencies
@@ -51,7 +51,88 @@ npm run dev
 
 The application should now be running on `http://localhost:3000`.
 
+## API Endpoints
+
+### Authentication
+
+#### Register a new user
+
+- **URL**: `/api/auth/register`
+- **Method**: `POST`
+- **Body**:
+  ```json
+  {
+    "username": "exampleuser",
+    "password": "examplepassword",
+    "email": "user@example.com"
+    "role" : "admin"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "message": "User registered successfully"
+  }
+  ```
+
+#### Login
+
+- **URL**: `/api/auth/login`
+- **Method**: `POST`
+- **Body**:
+  ```json
+  {
+    "username": "exampleuser",
+    "password": "examplepassword"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "token": "your-jwt-token"
+  }
+  ```
+
+### Role Management
+
+#### Create a role
+
+- **URL**: `/api/roles`
+- **Method**: `POST`
+- **Headers**:
+  - `Authorization`: `Bearer your-jwt-token`
+- **Body**:
+  ```json
+  {
+    "name": "admin",
+    "permissions": ["read", "write", "delete"]
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "message": "Role created successfully"
+  }
+  ```
+
+
+### Protected Routes
+
+Protected routes are endpoints that can only be accessed by users with specific roles. The middleware checks the user's roles and grants access only if the user has the required role.
+
+#### Example of a Protected Route
+
+- **URL**: `/api/protected/admin`
+- **Method**: `GET`
+- **Headers**:
+  - `Authorization`: `Bearer your-jwt-token`
+- **Response**:
+  ```json
+  {
+    "message": "Welcome Admin"
+  }
+  ```
+
 ## License
 
-This project is MIT License.
-```
+This project is licensed under the MIT License.
