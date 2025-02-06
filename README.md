@@ -53,7 +53,5 @@ The application should now be running on `http://localhost:3000`.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is MIT License.
 ```
-
-This README file provides a comprehensive guide on how to set up and run the RBAC project. Make sure to replace the placeholders in the `.env` file with your actual MongoDB connection string and secret key. If there are additional configuration options or setup steps specific to your project, you can include them in the README file as needed
