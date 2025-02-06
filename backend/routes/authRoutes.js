@@ -6,8 +6,6 @@ import Role from "../models/roles.js";
 
 const authRouter = express.Router();
 
-const secretKey = "secretKey";
-
 // Register a new user
 authRouter.post("/register", async (req, res) => {
   const { name, email, password, roleName } = req.body;
@@ -30,7 +28,9 @@ authRouter.post("/register", async (req, res) => {
 
     await newUser.save();
 
-    const token = jwt.sign({ id: newUser.id }, secretKey, { expiresIn: "1h" });
+    const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
 
     res.json({ success: true, token });
   } catch (error) {
@@ -54,7 +54,9 @@ authRouter.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ id: user.id }, secretKey, { expiresIn: "1h" });
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
 
     res.json({ token });
   } catch (error) {

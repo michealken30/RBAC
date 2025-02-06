@@ -9,7 +9,7 @@ const verifyToken = async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, "secretKey");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     // Fetch the user with their role details
     const user = await User.findById(decoded.id).populate("role");
     if (!user) {
