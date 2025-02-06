@@ -97,7 +97,7 @@ The application should now be running on `http://localhost:3000`.
 
 #### Create a role
 
-- **URL**: `/api/roles`
+- **URL**: `/roles/create`
 - **Method**: `POST`
 - **Headers**:
   - `Authorization`: `Bearer your-jwt-token`
@@ -122,7 +122,7 @@ Protected routes are endpoints that can only be accessed by users with specific 
 
 #### Example of a Protected Route
 
-- **URL**: `/api/protected/admin`
+- **URL**: `/protected/admin`
 - **Method**: `GET`
 - **Headers**:
   - `Authorization`: `Bearer your-jwt-token`
